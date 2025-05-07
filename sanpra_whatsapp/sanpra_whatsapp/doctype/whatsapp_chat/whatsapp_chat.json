@@ -1,0 +1,102 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-28 12:15:36.984360",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "contact_number",
+  "contact_name",
+  "reference_doctype",
+  "reference_document",
+  "messages_section",
+  "messages",
+  "chat_html",
+  "chat_box",
+  "chat_box_html",
+  "custom_chat_box"
+ ],
+ "fields": [
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Contact Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_name",
+   "fieldtype": "Data",
+   "label": "Contact Name"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "label": "Reference DocType",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "reference_document",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Document",
+   "options": "reference_doctype"
+  },
+  {
+   "fieldname": "messages_section",
+   "fieldtype": "Section Break",
+   "label": "Messages"
+  },
+  {
+   "fieldname": "messages",
+   "fieldtype": "Table",
+   "label": "Messages",
+   "options": "WhatsApp Message"
+  },
+  {
+   "fieldname": "chat_html",
+   "fieldtype": "HTML",
+   "label": "Chat"
+  },
+  {
+   "fieldname": "chat_box",
+   "fieldtype": "Tab Break",
+   "label": "Chat"
+  },
+  {
+   "fieldname": "chat_box_html",
+   "fieldtype": "Column Break",
+   "label": "Chat "
+  },
+  {
+   "fieldname": "custom_chat_box",
+   "fieldtype": "HTML",
+   "label": "Chat Box"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-05-06 10:54:43.117043",
+ "modified_by": "Administrator",
+ "module": "Sanpra Whatsapp",
+ "name": "WhatsApp Chat",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

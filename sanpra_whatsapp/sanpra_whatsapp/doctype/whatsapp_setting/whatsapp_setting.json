@@ -1,0 +1,66 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-05-06 17:24:42.159080",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "api_base_url",
+  "access_token",
+  "phone_number_id",
+  "webhook_verify_token"
+ ],
+ "fields": [
+  {
+   "fieldname": "api_base_url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "API Base URL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "access_token",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Access Token",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone_number_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone Number ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "webhook_verify_token",
+   "fieldtype": "Data",
+   "label": "Webhook Verify Token"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-05-06 17:24:42.159080",
+ "modified_by": "Administrator",
+ "module": "Sanpra Whatsapp",
+ "name": "WhatsApp Setting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

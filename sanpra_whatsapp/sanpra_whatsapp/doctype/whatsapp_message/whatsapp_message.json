@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-28 12:15:08.601970",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "message",
+  "direction",
+  "status",
+  "timestamp",
+  "message_user",
+  "media_url",
+  "media_type",
+  "message_id",
+  "media"
+ ],
+ "fields": [
+  {
+   "fieldname": "message",
+   "fieldtype": "Text Editor",
+   "label": "Message"
+  },
+  {
+   "fieldname": "direction",
+   "fieldtype": "Select",
+   "label": "Direction",
+   "options": "Incoming\nOutgoing"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Sent\nDelivered\nRead\nFailed"
+  },
+  {
+   "fieldname": "timestamp",
+   "fieldtype": "Datetime",
+   "label": "Timestamp"
+  },
+  {
+   "fieldname": "media_url",
+   "fieldtype": "Long Text",
+   "label": "Media URL"
+  },
+  {
+   "fieldname": "media_type",
+   "fieldtype": "Data",
+   "label": "Media Type"
+  },
+  {
+   "fieldname": "message_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Message id"
+  },
+  {
+   "fieldname": "media",
+   "fieldtype": "Attach",
+   "label": "media"
+  },
+  {
+   "default": "som@sanpra.co.in",
+   "fieldname": "message_user",
+   "fieldtype": "Link",
+   "label": "Message User",
+   "options": "User"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-05-07 13:01:02.943042",
+ "modified_by": "Administrator",
+ "module": "Sanpra Whatsapp",
+ "name": "WhatsApp Message",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

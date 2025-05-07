@@ -26,7 +26,7 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/sanpra_whatsapp/css/sanpra_whatsapp.css"
-# app_include_js = "/assets/sanpra_whatsapp/js/sanpra_whatsapp.js"
+app_include_js = "/assets/sanpra_whatsapp/js/chat_others.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/sanpra_whatsapp/css/sanpra_whatsapp.css"
@@ -43,7 +43,7 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"WhatsApp Chat" : "public/js/chat.js","Lead" : "public/js/chat_lead.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
