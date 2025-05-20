@@ -1,56 +1,17 @@
 
 
-// let globalPhone;
-
-// function setupWhatsAppFeatures(frm) {
-//     frappe.db.get_value('Whatsapp Number Field', frm.doc.doctype, 'field_name')
-//         .then(result => {
-//             if (result && result.message && result.message.field_name) {
-//                 globalPhone = result.message.field_name;
-//                 console.log(`WhatsApp configured for ${frm.doc.doctype}, using field: ${globalPhone}`);
-//                 frm.add_custom_button(__('WhatsApp Chat'), function() {
-//                     show_whatsapp_chat_dialog(frm);
-//                 }, __('View'));
-                
-//                 var chat_field = frm.get_field('custom_chat_box');
-//                 if (chat_field) {
-//                     setup_chat_html_field(frm, chat_field);
-//                 }
-//             }
-//         })
-//         .catch(err => {
-//             console.error("Error checking WhatsApp configuration:", err);
-//         });
-// }
-
-
-// const supportedDoctypes =  (await frappe.db.get_value('Whatsapp Number Field', {}, 'document')).message.document
-// console.log(supportedDoctypes);
-// supportedDoctypes.forEach(doctype => {
-//     frappe.ui.form.on(doctype, {
-//         refresh: function(frm) {
-//             setupWhatsAppFeatures(frm);
-//         }
-//     });
-// });
-
-
 let globalPhone;
 
 function setupWhatsAppFeatures(frm) {
     frappe.db.get_value('Whatsapp Number Field', frm.doc.doctype, 'field_name')
         .then(result => {
             if (result && result.message && result.message.field_name) {
-                // Store the phone field name
                 globalPhone = result.message.field_name;
-                // Sanpra@2197
-                
                 frm.add_custom_button(__('WhatsApp Chat'), function() {
 
                     show_whatsapp_chat_dialog(frm);
                 }, __('View'));
                 
-                // Setup the chat box if it exists
                 var chat_field = frm.get_field('custom_chat_box');
                 if (chat_field) {
                     setup_chat_html_field(frm, chat_field);
@@ -63,6 +24,23 @@ function setupWhatsAppFeatures(frm) {
 }
 
 
+
+function formatMobileNumber(number) {
+    number = number.replace(/\D/g, '');
+  
+    if (number.length === 10) {
+      return '91' + number;
+    }
+  
+    if (number.length === 12 && number.startsWith('91')) {
+      return number;
+    }
+  
+    return number;
+}
+
+  
+
 (async function() {
     try {
         const result = await frappe.db.get_list('Whatsapp Number Field', {
@@ -71,7 +49,6 @@ function setupWhatsAppFeatures(frm) {
         
         if (result && result.length > 0) {
             const doctypes = result.map(r => r.document);
-            // console.log("WhatsApp enabled for doctypes: ;l;ljjlj", doctypes);
             
             doctypes.forEach(doctype => {
                 if (doctype) {  
@@ -126,7 +103,7 @@ function show_whatsapp_chat_dialog(frm) {
                 fieldtype: 'Data',
                 label: 'Phone Number',
                 reqd: 1,
-                default: frm.get_field(globalPhone).get_value() || ''
+                default: formatMobileNumber(frm.get_field(globalPhone).get_value()) || ''
             },
             {
                 fieldname: 'custom_chat_box',
@@ -277,7 +254,7 @@ function send_whatsapp_message(frm, phone_number, message, dialog) {
                     }
                 }
                 frappe.show_alert({
-                    message: __('WhatsApp attachment sent successfully'),
+                    message: __('WhatsApp message sent successfully'),
                     indicator: 'green'
                 }, 3);
                 
@@ -417,8 +394,7 @@ function init_whatsapp_chat(frm, wrapper) {
     wrapper.find('.send-btn').on('click', function() {
         const message = wrapper.find('textarea').val();
         const file = wrapper.find('.attachment-input')[0].files[0];
-        const phone = frm.get_field(globalPhone).get_value();
-        
+        const phone = formatMobileNumber(frm.get_field(globalPhone).get_value()) || '';
         if ((message || file) && phone) {
             if (file) {
                 send_whatsapp_attachment(frm, phone, message, file);
@@ -449,7 +425,7 @@ function init_whatsapp_chat(frm, wrapper) {
     });
     
     frappe.realtime.on('new_whatsapp_message', function(data) {
-        const phone = frm.get_field(globalPhone).get_value() || '';
+        const phone = formatMobileNumber(frm.get_field(globalPhone).get_value()) || '';
         if (phone && data.from_number === phone.replace('+', '')) {
             load_whatsapp_chat(frm, wrapper);
         }
@@ -495,7 +471,7 @@ function load_chat_messages(frm, dialog, phone_number) {
 }
 
 function load_whatsapp_chat(frm, wrapper) {
-    const phone = frm.get_field(globalPhone).get_value() || '';
+    const phone = formatMobileNumber(frm.get_field(globalPhone).get_value()) || '';
     if (!phone) {
         wrapper.find('.chat-messages').html('<div class="text-muted">No phone number available for this document</div>');
         return;
